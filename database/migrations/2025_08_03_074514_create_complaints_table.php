@@ -21,7 +21,7 @@ return new class extends Migration
             $table->json('attachment')->nullable();
             $table->timestamps();
         });
-    }
+    }   
 
     public function down(): void
     {

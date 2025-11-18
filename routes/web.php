@@ -8,12 +8,78 @@ use App\Http\Controllers\RoleController;
 
 use App\Http\Controllers\AdminDashboardController;
 
+
+
+
+use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
+require __DIR__.'/auth.php';
+
+// ==================== الروتات المحمية (يتطلب تسجيل الدخول) ====================
+Route::middleware(['auth'])->group(function () {
+
+    // --------------------- لوحة التحكم ---------------------
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
+
+    // --------------------- الشكاوى (متاحة للجميع) ---------------------
+    Route::resource('complaints', ComplaintController::class)
+        ->parameters(['complaints' => 'complaint']);
+
+    // إجراءات إضافية على الشكاوى
+    Route::post('/complaints/{complaint}/assign', [ComplaintController::class, 'assign'])
+        ->name('complaints.assign')
+        ->middleware('role:admin|employee');
+
+    Route::post('/complaints/{complaint}/status', [ComplaintController::class, 'updateStatus'])
+        ->name('complaints.status')
+        ->middleware('role:admin|employee|doctor');
+
+    Route::post('/complaints/{complaint}/comment', [ComplaintController::class, 'comment'])
+        ->name('complaints.comment');
+
+    // --------------------- إدارة الأقسام (أدمن فقط) ---------------------
+    Route::middleware('role:admin')->group(function () {
+        Route::resource('departments', DepartmentController::class)
+            ->except(['show'])
+            ->parameters(['departments' => 'department']);
+    });
+
+    // --------------------- إدارة الفئات (أدمن فقط) ---------------------
+    Route::middleware('role:admin')->group(function () {
+        Route::resource('categories', CategoryController::class)
+            ->except(['show'])
+            ->parameters(['categories' => 'category']);
+    });
+
+
+
+    // --------------------- الإشعارات (اختياري) ---------------------
+    Route::get('/notifications', function () {
+        $notifications = auth()->user()->notifications()->latest()->paginate(20);
+        auth()->user()->notifications()->update(['read_at' => now()]);
+        return view('notifications.index', compact('notifications'));
+    })->name('notifications.index');
+
+});
+
+
+
+
+
+
+
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-require __DIR__.'/auth.php';
+
  // روابط التحكم بالمستخدمين 
 Route::get('/users', [UserController::class, 'index'])->name('users.index'); // عرض قائمة المستخدمين
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create'); // إضافة مستخدم جديد
@@ -41,7 +107,7 @@ Route::get('template',function(){
 });
 /**************************************************   website   */
 
-Route::get('/', [VolunteerController::class, 'index_web_main'])->name('main_home'); 
+Route::get('/', [UserController::class, 'index_web_main'])->name('main_home'); 
 
 
 
@@ -52,54 +118,3 @@ Route::get('about-web',function(){
 Route::get('contact-web',function(){
     return view('website.pages.contact');
 })->name('contact');
-
-
-
-
-use App\Http\Controllers\SkillController;
-Route::resource('skills', SkillController::class);
-
-use App\Http\Controllers\OrganizationController;
-Route::resource('organizations', OrganizationController::class);
-Route::get('/web_organizations',[ OrganizationController::class,'index_web'])->name('web_organizations');
-Route::get('/web_organizations_single/{organization}',[ OrganizationController::class,'index_web_single'])->name('web_organizations_single');
-use App\Http\Controllers\VolunteerSkillController;
-Route::resource('volunteer-skills', VolunteerSkillController::class);
-
-
-Route::resource('volunteers', VolunteerController::class);
-Route::get('/web_volunteers',[ VolunteerController::class,'index_web'])->name('web_volunteers');
-Route::get('/web_volunteers_single/{volunteer}',[ VolunteerController::class,'index_web_single'])->name('web_volunteers_single');
-
-
-
-use App\Http\Controllers\PersonController;
-Route::resource('people', PersonController::class);
-
-
-
-use App\Http\Controllers\EventController;
-Route::resource('events', EventController::class);
-Route::get('/web_events',[ EventController::class,'index_web'])->name('web_events');
-Route::get('/web_events_single/{event}',[ EventController::class,'index_web_single'])->name('web_events_single');
-
-
-
-
-use App\Http\Controllers\EventVolunteerController;
-Route::resource('event-volunteers', EventVolunteerController::class);
-
-use App\Http\Controllers\VolunteerTaskController;
-Route::resource('volunteer-tasks', VolunteerTaskController::class);
-
-use App\Http\Controllers\FinancialSupportController;
-Route::resource('financial-supports', FinancialSupportController::class);
-
-
-use App\Http\Controllers\FundingOrganizationController;
-Route::resource('funding-organizations', FundingOrganizationController::class);
-
-
-use App\Http\Controllers\EmployedAvailableResourceController;
-Route::resource('employed-available-resources', EmployedAvailableResourceController::class);
-

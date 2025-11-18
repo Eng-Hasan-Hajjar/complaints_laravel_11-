@@ -1,67 +1,185 @@
-<footer class="footer" style="background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%); color: #ffffff; padding: 60px 0 20px; border-top: 1px solid #333; direction: rtl;">
+<footer class="site-footer pt-5" style="background-color: #0f172a; color: #e2e8f0;">
     <div class="container">
-        <div class="row">
-            <!-- About Section -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="footer_widget" style="transition: transform 0.3s ease;">
-                    <div class="footer_logo mb-3 text-end">
-                        <a href="#">
-                            <img src="{{ asset('website/img/footer_logo.png') }}" alt="VolunteerLink Footer Logo" style="max-height: 60px; transition: opacity 0.3s ease;">
+        <div class="row g-5">
+
+            <!-- العمود الأول: الشعار -->
+            <div class="col-lg-3 col-md-6 col-12 text-center text-md-start">
+                <div class="footer-logo-wrapper mb-4">
+                    <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="قلب طيب" style="height: 80px;">
+                    <h4 class="text-white mt-3 mb-1 fw-bold">قلب طيب</h4>
+                    <p class="small opacity-75">منظمة خيرية غير ربحية</p>
+                </div>
+            </div>
+
+            <!-- العمود الثاني: روابط سريعة -->
+            <div class="col-lg-3 col-md-6 col-12">
+                <h5 class="site-footer-title text-warning mb-4 position-relative d-inline-block">
+                    روابط سريعة
+                    <span class="underline"></span>
+                </h5>
+                <ul class="footer-menu list-unstyled">
+                    <li class="footer-menu-item mb-2">
+                        <a href="#section_2" class="footer-menu-link text-light smooth-scroll hover-yellow">
+                            <i class="bi bi-arrow-left-circle me-2"></i> قصتنا
                         </a>
-                    </div>
-                    <p class="address_text mb-3" style="color: #ccc; font-size: 1rem; text-align: right;">حلب - الجميلية</p>
-                    <div class="socail_links">
-                        <ul class="d-flex justify-content-end list-unstyled mb-0">
-                            <li class="me-3"><a href="#" target="_blank" style="color: #ccc; transition: color 0.3s ease;"><i class="fab fa-facebook-f"></i></a></li>
-                            <li class="me-3"><a href="#" target="_blank" style="color: #ccc; transition: color 0.3s ease;"><i class="fab fa-twitter"></i></a></li>
-                            <li class="me-3"><a href="#" target="_blank" style="color: #ccc; transition: color 0.3s ease;"><i class="fab fa-dribbble"></i></a></li>
-                            <li><a href="#" target="_blank" style="color: #ccc; transition: color 0.3s ease;"><i class="fab fa-instagram"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
+                    </li>
+                    <li class="footer-menu-item mb-2">
+                        <a href="" class="footer-menu-link text-light hover-yellow">
+                            <i class="bi bi-newspaper me-2"></i> غرفة الأخبار
+                        </a>
+                    </li>
+                    <li class="footer-menu-item mb-2">
+                        <a href="#section_3" class="footer-menu-link text-light smooth-scroll hover-yellow">
+                            <i class="bi bi-briefcase me-2"></i> مشاريعنا
+                        </a>
+                    </li>
+                    <li class="footer-menu-item mb-2">
+                        <a href="#section_4" class="footer-menu-link text-light smooth-scroll hover-yellow">
+                            <i class="bi bi-people me-2"></i> كن متطوعًا
+                        </a>
+                    </li>
+                    <li class="footer-menu-item mb-2">
+                        <a href="#section_6" class="footer-menu-link text-light smooth-scroll hover-yellow">
+                            <i class="bi bi-handshake me-2"></i> شارك معنا
+                        </a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Services Section -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="footer_widget">
-                    <h3 class="footer_title mb-4" style="color: #1e90ff; font-size: 1.5rem; font-weight: 600; border-bottom: 2px solid #0053c0; padding-bottom: 5px; text-align: right;">الخدمات</h3>
-                    <ul class="links list-unstyled">
-                        <li class="mb-2"><a href="#" style="color: #ccc; text-decoration: none; transition: color 0.3s ease; display: block; text-align: right;">التبرع</a></li>
-                        <li class="mb-2"><a href="#" style="color: #ccc; text-decoration: none; transition: color 0.3s ease; display: block; text-align: right;">الرعاية</a></li>
-                        <li class="mb-2"><a href="#" style="color: #ccc; text-decoration: none; transition: color 0.3s ease; display: block; text-align: right;">جمع التبرعات</a></li>
-                        <li class="mb-2"><a href="#" style="color: #ccc; text-decoration: none; transition: color 0.3s ease; display: block; text-align: right;">التطوع</a></li>
-                        <li><a href="#" style="color: #ccc; text-decoration: none; transition: color 0.3s ease; display: block; text-align: right;">الشراكة</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Contact Section -->
-            <div class="col-lg-5 col-md-6 mb-4">
-                <div class="footer_widget">
-                    <h3 class="footer_title mb-4" style="color: #1e90ff; font-size: 1.5rem; font-weight: 600; border-bottom: 2px solid #0053c0; padding-bottom: 5px; text-align: right;">جهات الاتصال</h3>
-                    <div class="contacts">
-                        <p style="color: #ccc; font-size: 1rem; text-align: right;">
-                            <i class="fas fa-phone-alt me-2" style="color: #0053c0;"></i>+963-800-123-456<br>
-                            <i class="fas fa-envelope me-2" style="color: #0053c0;"></i>info@volunteerlink.org<br>
-                            <i class="fas fa-map-marker-alt me-2" style="color: #0053c0;"></i>123 شارع فيصل، حلب
+            <!-- العمود الثالث: معلومات التواصل -->
+            <div class="col-lg-3 col-md-6 col-12">
+                <h5 class="site-footer-title text-warning mb-4 position-relative d-inline-block">
+                    تواصل معنا
+                    <span class="underline"></span>
+                </h5>
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <p class="d-flex align-items-center text-light">
+                            <i class="bi bi-telephone-fill text-warning me-3 fs-5"></i>
+                            <a href="tel:+471202409600" class="site-footer-link hover-yellow">+47 120 240 9600</a>
                         </p>
-                    </div>
-                </div>
+                    </li>
+                    <li class="mb-3">
+                        <p class="d-flex align-items-center text-light">
+                            <i class="bi bi-envelope-fill text-warning me-3 fs-5"></i>
+                            <a href="mailto:donate@qalb-tayeb.org" class="site-footer-link hover-yellow">donate@qalb-tayeb.org</a>
+                        </p>
+                    </li>
+                    <li class="mb-4">
+                        <p class="d-flex align-items-start text-light">
+                            <i class="bi bi-geo-alt-fill text-warning me-3 fs-5 mt-1"></i>
+                            <span>أكيرس هوسستراندا 20،<br>0150 أوسلو، النرويج</span>
+                        </p>
+                    </li>
+                    <li>
+                        <a href="https://maps.google.com/?q=Akershusstranda+20,+0150+Oslo" target="_blank"
+                           class="btn btn-outline-warning btn-sm px-4 rounded-pill shadow-sm hover-bg-yellow">
+                            <i class="bi bi-geo-alt me-2"></i> احصل على الاتجاهات
+                        </a>
+                    </li>
+                </ul>
             </div>
+
+            <!-- العمود الرابع: اشتراك في النشرة + تبرع سريع -->
+            <div class="col-lg-3 col-md-6 col-12">
+                <h5 class="site-footer-title text-warning mb-4 position-relative d-inline-block">
+                    كن على تواصل
+                    <span class="underline"></span>
+                </h5>
+                <p class="text-light mb-3">اشترك في النشرة البريدية ليصلك كل جديد</p>
+                <form action="" method="POST" class="d-flex mb-4">
+                    @csrf
+                    <input type="email" name="email" class="form-control rounded-pill me-2" placeholder="بريدك الإلكتروني" required>
+                    <button type="submit" class="btn btn-warning rounded-pill px-4 shadow-sm">
+                        <i class="bi bi-send"></i>
+                    </button>
+                </form>
+
+                <a href=""
+                   class="btn btn-lg btn-warning text-dark w-100 rounded-pill shadow-lg hover-scale fw-bold">
+                    <i class="bi bi-heart-fill me-2"></i> تبرع الآن
+                </a>
+            </div>
+
         </div>
     </div>
 
-    <!-- Copyright Section -->
-    <div class="copy-right_text py-3 mt-4" style="background: #0d0d0d; border-top: 1px solid #222;">
+    <!-- الجزء السفلي من الفوتر -->
+    <div class="site-footer-bottom border-top border-secondary mt-5 py-4" style="background-color: #1e293b;">
         <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <p class="copy_right text-white mb-0" style="font-size: 0.9rem; text-align: right;">
-                        حقوق النشر ©<script>document.write(new Date().getFullYear());</script> جميع الحقوق محفوظة | تم إنشاء هذا الموقع والتطبيق بواسطة 
-                        <a href="#" target="_blank" style="color: #1e90ff; text-decoration: none; transition: color 0.3s ease;">طلاب كلية الهندسة المعلوماتية سنة رابعة</a>
+            <div class="row align-items-center text-center text-lg-start">
+
+                <div class="col-lg-6 col-12">
+                    <p class="copyright-text mb-0 text-light small">
+                        جميع الحقوق محفوظة © {{ date('Y') }} 
+                        <a href="{{ url('/') }}" class="text-warning fw-bold">قلب طيب</a> للأعمال الخيرية
+                        <br>
+                        <span class="opacity-75">
+                            التصميم والتطوير بكل حب 
+                            <i class="bi bi-heart-fill text-danger"></i> 
+                            بواسطة 
+                            <a href="https://github.com/yourname" target="_blank" class="text-warning">فريق قلب طيب التقني</a>
+                        </span>
                     </p>
                 </div>
+
+                <div class="col-lg-6 col-12 mt-3 mt-lg-0">
+                    <ul class="social-icon d-flex justify-content-center justify-content-lg-end gap-3 mb-0">
+                        <li><a href="#" class="social-icon-link bi-twitter fs-4 text-light hover-yellow"></a></li>
+                        <li><a href="#" class="social-icon-link bi-facebook fs-4 text-light hover-yellow"></a></li>
+                        <li><a href="#" class="social-icon-link bi-instagram fs-4 text-light hover-yellow"></a></li>
+                        <li><a href="#" class="social-icon-link bi-linkedin fs-4 text-light hover-yellow"></a></li>
+                        <li><a href="#" class="social-icon-link bi-youtube fs-4 text-light hover-yellow"></a></li>
+                        <li><a href="#" class="social-icon-link bi-whatsapp fs-4 text-light hover-yellow"></a></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>
 </footer>
+
+<!-- الأنماط الإضافية -->
+<style>
+    .site-footer-title {
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
+    .underline {
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: #fbbf24;
+        border-radius: 2px;
+    }
+    .footer-menu-link, .site-footer-link {
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    .hover-yellow:hover {
+        color: #fbbf24 !important;
+        padding-left: 8px;
+    }
+    .hover-scale {
+        transition: transform 0.3s ease;
+    }
+    .hover-scale:hover {
+        transform: translateY(-3px);
+    }
+    .hover-bg-yellow {
+        transition: all 0.3s ease;
+    }
+    .hover-bg-yellow:hover {
+        background-color: #fbbf24 !important;
+        color: #1e293b !important;
+    }
+    .social-icon-link {
+        transition: all 0.3s ease;
+    }
+    .social-icon-link:hover {
+        transform: translateY(-3px) scale(1.2);
+        color: #fbbf24 !important;
+    }
+</style>

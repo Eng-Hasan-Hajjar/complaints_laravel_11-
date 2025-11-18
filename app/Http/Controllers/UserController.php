@@ -8,6 +8,37 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+
+
+        public function index_web_main()
+        {
+            /*
+            $events = Event::with('coordinator', 'galleryImages')
+                        ->where('start_day', '>=', Carbon::today())
+                        ->orderBy('start_day', 'asc')
+                        ->take(3)
+                        ->get();
+
+            $volunteers = Volunteer::with('person', 'volunteerSkills', 'eventVolunteers.event')
+                            ->take(3)
+                            ->get();
+
+            $organizations = Organization::take(3)
+                            ->get();
+*/
+            return view('website.index');
+        }
+
+
+
+
+
+
+
+
+
+
     public function index(Request $request)
     {
         $query = User::with('roles');
