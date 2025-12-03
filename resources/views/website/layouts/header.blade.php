@@ -6,7 +6,7 @@
             <div class="col-lg-6 col-12 d-flex flex-wrap align-items-center justify-content-start gap-4 text-white small">
                 <p class="d-flex align-items-center mb-0">
                     <i class="bi bi-geo-alt-fill me-2"></i>
-                    أكيرس هوسستراندا 20، 0150 أوسلو، النرويج
+             - مدينة حلب   -   جامعة الشهباء -   حلب الجديدة
                 </p>
                 <p class="d-flex align-items-center mb-0">
                     <i class="bi bi-envelope-fill me-2"></i>

@@ -5,10 +5,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta name="description" content="منظمة خيرية غير ربحية - قلب طيب">
+        <meta name="description" content=" جامعة الشهباء ">
         <meta name="author" content="">
 
-        <title>قلب طيب - منظمة خيرية غير ربحية</title>
+        <title> جامعة الشهباء </title>
 
         <!-- CSS FILES -->        
         <link href="{{ asset('website/css/bootstrap.min.css') }}" rel="stylesheet">

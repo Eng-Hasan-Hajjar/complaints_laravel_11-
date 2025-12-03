@@ -29,21 +29,21 @@
     <!-- خلفية فيديو أو صورة ديناميكية (اختياري) -->
     <div class="hero-bg">
         <div class="overlay"></div>
-        <img src="{{ asset('website/images/university-campus.jpg') }}" 
+        <img src="" 
              alt="جامعة الشهباء" 
              class="hero-bg-image">
     </div>
 
-    <div class="container position-relative z-10 h-100">
-        <div class="row align-items-center justify-content-center h-100">
+    <div class="container position-relative z-10 h-50">
+        <div class="row align-items-center justify-content-center h-50">
             <div class="col-lg-10 col-xl-8 text-center text-white">
 
                 <!-- شعار الجامعة (اختياري) -->
                 <div class="university-logo mb-4">
-                    <img src="{{ asset('website/images/logo-shahba-university.png') }}" 
+                    <img src="{{ asset('website/images/logo.png') }}" 
                          alt="جامعة الشهباء" 
                          class="img-fluid" 
-                         style="max-height: 120px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));">
+                         style="max-height: 120px; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.21));">
                 </div>
 
                 <h1 class="display-4 fw-bold mb-4 lh-base">
@@ -75,7 +75,7 @@
                         <a href="{{ route('login') }}" 
                            class="btn btn-primary btn-lg px-5 py-3 rounded-pill shadow-lg fw-bold hover-lift">
                             <i class="bi bi-box-arrow-in-right"></i>
-                            تسجيل الدخول لتقديم شكوى
+                              تقديم شكوى
                         </a>
                     @endauth
 

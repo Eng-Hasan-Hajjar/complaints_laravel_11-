@@ -6,8 +6,8 @@
             <div class="col-lg-3 col-md-6 col-12 text-center text-md-start">
                 <div class="footer-logo-wrapper mb-4">
                     <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="قلب طيب" style="height: 80px;">
-                    <h4 class="text-white mt-3 mb-1 fw-bold">قلب طيب</h4>
-                    <p class="small opacity-75">منظمة خيرية غير ربحية</p>
+                    <h4 class="text-white mt-3 mb-1 fw-bold">جامعة الشهباء </h4>
+                    <p class="small opacity-75">   </p>
                 </div>
             </div>
 
@@ -25,7 +25,7 @@
                     </li>
                     <li class="footer-menu-item mb-2">
                         <a href="" class="footer-menu-link text-light hover-yellow">
-                            <i class="bi bi-newspaper me-2"></i> غرفة الأخبار
+                            <i class="bi bi-newspaper me-2"></i>  
                         </a>
                     </li>
                     <li class="footer-menu-item mb-2">
