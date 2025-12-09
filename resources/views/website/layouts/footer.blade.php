@@ -86,11 +86,9 @@
                         </div>
                     </li>
                     <li>
-                        <a href="https://maps.google.com/?q=Shahba+University+Aleppo" target="_blank"
-                           class="btn btn-outline-warning btn-sm px-4 rounded-pill hover-bg-yellow">
-                            <i class="bi bi-geo-alt"></i> احصل على الاتجاهات
-                        </a>
-                    </li>
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6438.902055729384!2d37.08128399357909!3d36.204230800000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152559efe3a219a5%3A0xf3349914d48da9d8!2z2KzYp9mF2LnYqSDYp9mE2LTZh9io2KfYoSDYp9mE2K7Yp9i12Kkg2KfZhNmF2KjZhtmJINin2YTYrNiv2YrYrw!5e0!3m2!1sen!2snl!4v1765290373460!5m2!1sen!2snl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                     </li>
                 </ul>
             </div>
 

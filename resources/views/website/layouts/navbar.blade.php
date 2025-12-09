@@ -81,55 +81,7 @@
                     <div class="vr text-white opacity-50 mx-2" style="height: 40px;"></div>
                 </li>
 
-                <!-- أزرار المصادقة والإجراءات السريعة -->
-                @auth
-                    <!-- المستخدم مسجل دخوله -->
-                    <li class="nav-item">
-                        <a href="{{ route('complaints.create') }}" 
-                           class="btn btn-warning rounded-pill px-4 py-2 fw-bold shadow hover-lift">
-                            <i class="bi bi-plus-circle-fill me-2"></i>
-                            تقديم شكوى جديدة
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-white d-flex align-items-center gap-2 dropdown-toggle" 
-                           href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle fs-4"></i>
-                            <span class="d-none d-xl-inline">{{ Auth::user()->name }}</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2">
-                            <li><a class="dropdown-item" href="{{ route('dashboard') }}"><i class="bi bi-speedometer2 me-2"></i> لوحة التحكم</a></li>
-                            <li><a class="dropdown-item" href="{{ route('complaints.index') }}"><i class="bi bi-list-ul me-2"></i> شكاواي</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item text-danger">
-                                        <i class="bi bi-box-arrow-right me-2"></i> تسجيل الخروج
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                @else
-                    <!-- الزائر غير مسجل -->
-                    <li class="nav-item">
-                        <a href="{{ route('login') }}" 
-                           class="btn btn-outline-light rounded-pill px-4 py-2 fw-bold hover-bg-white">
-                            <i class="bi bi-box-arrow-in-right me-2"></i>
-                            تسجيل الدخول
-                        </a>
-                    </li>
-                    @if (Route::has('register'))
-                        <li class="nav-item ms-2">
-                            <a href="{{ route('register') }}" 
-                               class="btn btn-light text-dark rounded-pill px-4 py-2 fw-bold">
-                                <i class="bi bi-person-plus me-2"></i>
-                                إنشاء حساب
-                            </a>
-                        </li>
-                    @endif
-                @endauth
+
 
             </ul>
         </div>

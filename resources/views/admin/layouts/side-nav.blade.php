@@ -37,71 +37,25 @@
                     </li>
                     @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager'))
                         <li class="nav-item">
-                            <a href="{{ route('people.index') }}" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>المنسقين</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('volunteers.index') }}" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="nav-icon fas fa-user-friends"></i>
                                 <p>المتطوعين</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('skills.index') }}" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p>مهارات</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('volunteer-skills.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-tools"></i>
-                                <p>مهارات المتطوع</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('volunteer-tasks.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-tasks"></i>
-                                <p>مهام المتطوع</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('events.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-calendar-alt"></i>
-                                <p>الفعاليات</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('employed-available-resources.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-boxes"></i>
-                                <p>موارد متاحة</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('organizations.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-building"></i>
-                                <p>المنظمات</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('financial-supports.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-donate"></i>
-                                <p>الداعم المالي</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('funding-organizations.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-money-check-alt"></i>
-                                <p>تمويل المنظمات</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('event-volunteers.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-user-check"></i>
-                                <p>مشاركات المتطوعين</p>
-                            </a>
-                        </li>
+ 
+                 
                     @endif
                     @if(auth()->user()->hasRole('admin'))
                         <li class="nav-item">
