@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg shadow-lg sticky-top" style="background-color: #0f172a; backdrop-filter: blur(10px);">
+<nav class="navbar navbar-expand-lg shadow-lg sticky-top" style="background-color: #0f172a; backdrop-filter: blur(10px);text-align:right">
     <div class="container position-relative">
 
         <!-- شعار الجامعة + الاسم -->
@@ -9,7 +9,7 @@
                  style="height: 58px; object-fit: contain;">
             <div class="text-white">
                 <div class="fw-bold fs-4 lh-1">جامعة الشهباء</div>
-                <small class="opacity-80 fw-medium">نظام الشكاوى والاقتراحات الإلكتروني</small>
+                <small class="opacity-80 fw-medium" style="margin-top:10px">نظام الشكاوى والاقتراحات الإلكتروني</small>
             </div>
         </a>
 
