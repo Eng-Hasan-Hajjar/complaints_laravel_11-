@@ -1,233 +1,205 @@
 <section class="content content-wrapper">
-    <div class="container-fluid  ">
-        <!-- Info boxes -->
-        <div class="row">
-            <!-- Total Users -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-                    <div class="info-box-content text-right">
-                        <span class="info-box-text">إجمالي المستخدمين</span>
-                        <span class="info-box-number">{{ $totalUsers }}</span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Total Volunteers -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-user-plus"></i></span>
-                    <div class="info-box-content text-right">
-                        <span class="info-box-text">إجمالي المتطوعين</span>
-                        <span class="info-box-number">{{ $totalVolunteers }}</span>
-                    </div>
-                </div>
-            </div>
+        <div class="container-fluid">
 
-            <!-- Total Volunteer Tasks -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-tasks"></i></span>
-                    <div class="info-box-content text-right">
-                        <span class="info-box-text">مهام المتطوعين</span>
-                        <span class="info-box-number">{{ $totalVolunteerTasks }}</span>
-                    </div>
+    <!-- صف الإحصائيات الرئيسية -->
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{ $totalComplaints }}</h3>
+                    <p>إجمالي الشكاوى</p>
                 </div>
-            </div>
-
-            <!-- Total Financial Supports -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-donate"></i></span>
-                    <div class="info-box-content text-right">
-                        <span class="info-box-text">الدعم المالي</span>
-                        <span class="info-box-number">{{ $totalFinancialSupports }}</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Total Funding Organizations -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-building"></i></span>
-                    <div class="info-box-content text-right">
-                        <span class="info-box-text">تمويل المنظمات</span>
-                        <span class="info-box-number">{{ $totalFundingOrganizations }}</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Total Employed Available Resources -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-boxes"></i></span>
-                    <div class="info-box-content text-right">
-                        <span class="info-box-text">الموارد المتاحة</span>
-                        <span class="info-box-number">{{ $totalEmployedAvailableResources }}</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Active Events -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-purple elevation-1"><i class="fas fa-calendar-check"></i></span>
-                    <div class="info-box-content text-right">
-                        <span class="info-box-text">الفعاليات النشطة</span>
-                        <span class="info-box-number">{{ $activeEvents }}</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Total Volunteer Hours
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-teal elevation-1"><i class="fas fa-clock"></i></span>
-                    <div class="info-box-content text-right">
-                        <span class="info-box-text">ساعات العمل المتطوعة</span>
-                        <span class="info-box-number"> $totalVolunteerHours }}</span>
-                    </div>
-                </div>
-            </div>
- -->
-            <!-- Participation Rate -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-olive elevation-1"><i class="fas fa-chart-pie"></i></span>
-                    <div class="info-box-content text-right">
-                        <span class="info-box-text">معدل المشاركة</span>
-                        <span class="info-box-number">{{ number_format($participationRate, 2) }}%</span>
-                    </div>
-                </div>
+                <div class="icon"><i class="fas fa-file-alt"></i></div>
+                <a href="{{ route('complaints.index') }}" class="small-box-footer">عرض الكل <i class="fas fa-arrow-circle-left"></i></a>
             </div>
         </div>
 
-
-
-
-
-
-        <div class="row ">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">إحصائيات الموارد</h3>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-                            <i class="fas fa-wrench"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" role="menu">
-                            <a href="{{ route('volunteers.index') }}" class="dropdown-item">عرض المتطوعين</a>
-                            <a href="{{ route('event-volunteers.index') }}" class="dropdown-item">عرض مشاركات المتطوعين</a>
-                            <a href="{{ route('volunteer-tasks.index') }}" class="dropdown-item">عرض مهام المتطوعين</a>
-                            <a href="{{ route('financial-supports.index') }}" class="dropdown-item">عرض الدعم المالي</a>
-                            <a href="{{ route('funding-organizations.index') }}" class="dropdown-item">عرض تمويل المنظمات</a>
-                            <a href="{{ route('employed-available-resources.index') }}" class="dropdown-item">عرض الموارد المتاحة</a>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                        <i class="fas fa-times"></i>
-                    </button>
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>{{ $pendingComplaints }}</h3>
+                    <p>قيد الانتظار</p>
                 </div>
+                <div class="icon"><i class="fas fa-clock"></i></div>
+                <a href="{{ route('complaints.index') }}?status=pending" class="small-box-footer">عرض <i class="fas fa-arrow-circle-left"></i></a>
             </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                <div class="row">
-                    <!-- Resources Statistics Chart -->
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <canvas id="resourcesChart" style="height: 250px;"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Latest Volunteers -->
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">آخر المتطوعين</h3>
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-group">
-                                    @foreach($latestVolunteers as $volunteer)
-                                        <li class="list-group-item">
-                                            <a href="{{ route('volunteers.edit', $volunteer->id) }}">{{ $volunteer->person->name ?? 'غير متوفر' }}</a>
-                                            <span class="badge bg-primary float-end">{{ $volunteer->created_at->diffForHumans() }}</span>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Latest Event Volunteers -->
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">آخر مشاركات المتطوعين</h3>
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-group">
-                                    @foreach($latestEventVolunteers as $eventVolunteer)
-                                        <li class="list-group-item">
-                                            <strong>{{ $eventVolunteer->volunteer->person->name ?? 'غير متوفر' }}</strong> في
-                                            <a href="{{ route('event-volunteers.edit', $eventVolunteer->id) }}">{{ $eventVolunteer->event->name ?? 'فعالية غير معروفة' }}</a>
-                                            <span class="text-muted">{{ $eventVolunteer->created_at->diffForHumans() }}</span>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-            </div>
-            <!-- ./card-body -->
         </div>
-        <!-- /.card -->
+
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>{{ $urgentComplaints }}</h3>
+                    <p>طارئة / عالية الأولوية</p>
+                </div>
+                <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <a href="{{ route('complaints.index') }}?priority=urgent" class="small-box-footer">عاجلة <i class="fas fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>{{ $resolvedComplaints }}</h3>
+                    <p>تم حلها</p>
+                </div>
+                <div class="icon"><i class="fas fa-check-circle"></i></div>
+            </div>
+        </div>
     </div>
-    <!-- /.col -->
+
+    <!-- صف ثاني: إحصائيات إضافية -->
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <div class="info-box">
+                <span class="info-box-icon bg-primary"><i class="fas fa-users"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">الطلاب المسجلين</span>
+                    <span class="info-box-number">{{ $totalStudents }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="info-box">
+                <span class="info-box-icon bg-teal"><i class="fas fa-building"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">الأقسام الأكاديمية</span>
+                    <span class="info-box-number">{{ $totalDepartments }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="info-box">
+                <span class="info-box-icon bg-purple"><i class="fas fa-tags"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">فئات الشكاوى</span>
+                    <span class="info-box-number">{{ $totalCategories }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="info-box">
+                <span class="info-box-icon bg-olive"><i class="fas fa-hourglass-half"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">متوسط وقت الرد</span>
+                    <span class="info-box-number">
+                        {{ $avgResponseTime ? round($avgResponseTime) . ' ساعة' : 'لا توجد ردود بعد' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الصف الثالث: أحدث الشكاوى + أكثر الأقسام شكاوى -->
+    <div class="row">
+        <!-- أحدث الشكاوى -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header border-0 bg-gradient-primary">
+                    <h3 class="card-title fw-bold text-white">
+                        <i class="fas fa-list-ul me-2"></i> أحدث الشكاوى
+                    </h3>
+                    <div class="card-tools">
+                        <a href="{{ route('complaints.index') }}" class="btn btn-sm btn-light">
+                            عرض الكل
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>رقم الشكوى</th>
+                                <th>الطالب</th>
+                                <th>العنوان</th>
+                                <th>القسم</th>
+                                <th>الأولوية</th>
+                                <th>الحالة</th>
+                                <th>التاريخ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($latestComplaints as $complaint)
+                                <tr>
+                                    <td><a href="{{ route('complaints.show', $complaint) }}">#{{ $complaint->id }}</a></td>
+                                    <td>{{ $complaint->user->name }}</td>
+                                    <td>{{ Str::limit($complaint->title, 30) }}</td>
+                                    <td>{{ $complaint->department->name }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ $complaint->priority == 'urgent' ? 'danger' : ($complaint->priority == 'high' ? 'warning' : 'info') }}">
+                                            {{ trans('priority.' . $complaint->priority)}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{{ $complaint->status == 'resolved' ? 'success' : ($complaint->status == 'pending' ? 'warning' : 'primary') }}">
+                                            {{ trans('status.' . $complaint->status) }}
+                                        </span>
+                                    </td>
+                                    <td>{{ $complaint->created_at->diffForHumans() }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted">لا توجد شكاوى بعد</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- أكثر الأقسام شكاوى -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header bg-gradient-warning">
+                    <h3 class="card-title fw-bold text-white">
+                        <i class="fas fa-chart-bar me-2"></i> الأقسام الأكثر شكاوى
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        @foreach($topDepartments as $dept)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>{{ $dept->name }}</strong>
+                                </div>
+                                <span class="badge bg-warning rounded-pill">{{ $dept->complaints_count }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
+            <!-- إحصائية سريعة -->
+            <div class="card bg-gradient-success text-white mt-3">
+                <div class="card-body text-center py-4">
+                    <h4 class="mb-2">شكاوى اليوم</h4>
+                    <h2 class="fw-bold mb-0">{{ $todayComplaints }}</h2>
+                    <small>هذا الأسبوع: {{ $weekComplaints }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const ctx = document.getElementById('resourcesChart').getContext('2d');
-    const resourcesChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['المتطوعون', 'مشاركات المتطوعين', 'مهام المتطوعين', 'الدعم المالي', 'تمويل المنظمات', 'الموارد المتاحة'],
-            datasets: [{
-                data: [
-                    {{ $totalVolunteers }},
-                    {{ $totalEventVolunteers }},
-                    {{ $totalVolunteerTasks }},
-                    {{ $totalFinancialSupports }},
-                    {{ $totalFundingOrganizations }},
-                    {{ $totalEmployedAvailableResources }}
-                ],
-                backgroundColor: ['#28a745', '#dc3545', '#ffc107', '#17a2b8', '#6c757d', '#007bff'],
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-        }
-    });
+    // يمكنك إضافة رسوم بيانية دائرية أو خطية هنا لاحقًا
 </script>
 
 
-
-
-
-
-
-
-
-
-
-    </div>
-
-
 </section>
+
+
+
+
+
+
+

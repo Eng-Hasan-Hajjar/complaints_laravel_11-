@@ -89,6 +89,16 @@ class User extends Authenticatable
     }
     
 
+
+
+    // Scope جاهز من Spatie أو يدوي
+    public function scopeRole($query, $role)
+    {
+        return $query->whereHas('roles', fn($q) => $q->where('name', $role));
+    }
+
+    
+
     /**
      * التحقق مما إذا كان المستخدم لديه دور معين
      

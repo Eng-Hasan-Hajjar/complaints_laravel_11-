@@ -118,3 +118,17 @@ Route::get('about-web',function(){
 Route::get('contact-web',function(){
     return view('website.pages.contact');
 })->name('contact');
+
+
+
+
+
+
+
+use App\Http\Controllers\ComplaintTrackController;
+
+Route::get('/track-complaint', [ComplaintTrackController::class, 'showForm'])
+    ->name('complaints.track.form');
+
+Route::post('/track-complaint', [ComplaintTrackController::class, 'track'])
+    ->name('complaints.track');

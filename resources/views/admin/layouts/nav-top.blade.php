@@ -24,7 +24,7 @@
 
     @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('user'))
         <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{ route('people.index') }}" class="nav-link">
+                <a href="" class="nav-link">
                     <p>الأشخاص</p>
                 </a>
             </li>

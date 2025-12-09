@@ -13,12 +13,12 @@ class RolesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        // Define the roles
+// الأدوار المطلوبة في نظام الشكاوى - جامعة الشهباء
         $roles = [
-            'admin',
-            'manager',
-            'user',
-          
+            'admin',    // مدير النظام (رقم 1 لاحقًا إذا أردت)
+            'employee', // موظف الشؤون الطلابية / مكتب الشكاوى
+            'doctor',   // دكتور / عضو هيئة تدريسية
+            'student',  // طالب
         ];
 
         // Loop through each role and create it if it doesn't exist
