@@ -4,14 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\User;
+use App\Models\Complaint;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
     public function index()
     {
-        $departments = Department::with('manager')->get();
+        $departments = Department::all();
         return view('admin.departments.index', compact('departments'));
+    }
+    public function show(Department $department)
+    {
+      
+
+        $complaints = Complaint::with(['user', 'category', 'assignedUser'])
+            ->where('department_id', $department->id)
+            ->latest()
+            ->paginate(15);
+
+        return view('admin.departments.show', compact('department', 'complaints'));
     }
 
     public function create()

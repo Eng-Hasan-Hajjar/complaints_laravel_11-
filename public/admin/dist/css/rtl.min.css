@@ -1,0 +1,246 @@
+/* =========================================================
+   AdminLTE 3 RTL Right Sidebar - FULL FIX
+   Put AFTER adminlte.min.css
+   ========================================================= */
+
+/* Base RTL */
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+}
+
+/* =========================
+   Sidebar: move to RIGHT (no gap)
+   ========================= */
+html[dir="rtl"] .main-sidebar,
+html[dir="rtl"] .main-sidebar::before {
+  left: auto !important;
+  right: 0 !important;          /* <-- flush to right edge */
+  margin: 0 !important;
+}
+
+/* Ensure full width */
+html[dir="rtl"] .main-sidebar {
+  width: 250px;                 /* default AdminLTE width */
+}
+
+/* =========================
+   Layout spacing with sidebar
+   ========================= */
+html[dir="rtl"] .content-wrapper,
+html[dir="rtl"] .main-header,
+html[dir="rtl"] .main-footer {
+  margin-left: 0 !important;
+  margin-right: 2px !important;
+}
+
+/* Collapsed sidebar (AdminLTE adds this class on BODY) */
+html[dir="rtl"] body.sidebar-collapse .content-wrapper,
+html[dir="rtl"] body.sidebar-collapse .main-header,
+html[dir="rtl"] body.sidebar-collapse .main-footer {
+  margin-right: 4.1rem !important; /* mini width (~74px) */
+}
+
+/* Desktop mini sidebar behavior */
+@media (min-width: 992px) {
+  html[dir="rtl"] body.sidebar-mini.sidebar-collapse .content-wrapper,
+  html[dir="rtl"] body.sidebar-mini.sidebar-collapse .main-header,
+  html[dir="rtl"] body.sidebar-mini.sidebar-collapse .main-footer {
+    margin-right: 4.1rem !important;
+  }
+}
+
+/* =========================
+   Mobile: overlay sidebar (no content margin)
+   ========================= */
+@media (max-width: 991.98px) {
+  html[dir="rtl"] .content-wrapper,
+  html[dir="rtl"] .main-header,
+  html[dir="rtl"] .main-footer {
+    margin-right: 20px !important;
+  }
+
+  /* Off-canvas hidden state */
+  html[dir="rtl"] .main-sidebar,
+  html[dir="rtl"] .main-sidebar::before {
+    right: -150px !important;
+    left: auto !important;
+  }
+
+  /* Open state */
+  html[dir="rtl"] body.sidebar-open .main-sidebar,
+  html[dir="rtl"] body.sidebar-open .main-sidebar::before {
+    right: 250 !important;
+  }
+}
+
+/* =========================
+   Sidebar internal padding (fix the "right padding" look)
+   ========================= */
+html[dir="rtl"] .brand-link {
+  text-align: right;
+  padding-right: 0.1rem !important;
+  padding-left: 1rem !important;   /* keep balanced */
+}
+
+/* The scroll container inside sidebar (OverlayScrollbars) */
+html[dir="rtl"] .sidebar {
+  padding-right: 0.1rem !important;
+  padding-left: 0 !important;
+}
+
+/* Nav links alignment and padding */
+html[dir="rtl"] .nav-sidebar .nav-link {
+  text-align: right;
+  padding-right: 0rem !important;  /* important: RTL main padding */
+  padding-left: 0.75rem !important;
+}
+
+/* Icon spacing (icon becomes near right side) */
+html[dir="rtl"] .nav-sidebar .nav-icon {
+  margin-right: 250 !important;
+  margin-left: 0.6rem !important;
+}
+
+/* Treeview arrow (move to LEFT in RTL) */
+html[dir="rtl"] .nav-sidebar .nav-link > .right,
+html[dir="rtl"] .nav-sidebar .nav-link > .left {
+  right: auto !important;
+  left: 1rem !important;
+}
+
+/* Fix user panel text */
+html[dir="rtl"] .user-panel .info a {
+  text-align: right;
+}
+
+
+
+
+
+
+/* =========================================================
+   FINAL FIX: remove RIGHT GAP caused by scrollbar padding
+   ========================================================= */
+
+/* Remove scrollbar compensation */
+html[dir="rtl"] body {
+  padding-right: 0 !important;
+}
+
+/* Ensure wrapper is flush to right */
+html[dir="rtl"] .wrapper {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Sidebar must touch right edge */
+html[dir="rtl"] .main-sidebar,
+html[dir="rtl"] .main-sidebar::before {
+  right: 0 !important;
+  left: auto !important;
+  margin-right: 0 !important;
+}
+
+/* Header alignment */
+html[dir="rtl"] .main-header {
+  right: 0 !important;
+  margin-right: 25px !important;
+}
+
+/* When sidebar collapsed */
+html[dir="rtl"] body.sidebar-collapse .main-header {
+  margin-right: 0rem !important;
+}
+
+/* Mobile fix */
+@media (max-width: 991.98px) {
+  html[dir="rtl"] .main-header {
+    margin-right: 0 !important;
+  }
+}
+
+
+
+
+/* =========================================================
+   AdminLTE 3 RTL PushMenu FIX (no right gap)
+   ========================================================= */
+
+/* Always keep sidebar anchored to the RIGHT */
+html[dir="rtl"] .main-sidebar,
+html[dir="rtl"] .main-sidebar::before {
+  left: auto !important;
+  right: 0 !important;
+}
+
+/* Mobile / push-menu uses transform; fix it for RTL */
+@media (max-width: 200.98px) {
+
+  /* Closed state: sidebar hidden to the RIGHT */
+  html[dir="rtl"] .main-sidebar,
+  html[dir="rtl"] .main-sidebar::before {
+    transform: translateX(250px) !important; /* hide off-screen to the right */
+  }
+
+  /* Open state: sidebar visible */
+  html[dir="rtl"] body.sidebar-open .main-sidebar,
+  html[dir="rtl"] body.sidebar-open .main-sidebar::before {
+    transform: translateX(0) !important;
+  }
+}
+
+/* Desktop collapsed mini sidebar spacing remains correct */
+html[dir="rtl"] .content-wrapper,
+html[dir="rtl"] .main-header,
+html[dir="rtl"] .main-footer {
+  margin-left: 0 !important;
+  margin-right: 250px !important;
+}
+
+html[dir="rtl"] body.sidebar-collapse .content-wrapper,
+html[dir="rtl"] body.sidebar-collapse .main-header,
+html[dir="rtl"] body.sidebar-collapse .main-footer {
+  margin-right: 0rem !important;
+}
+
+/* When mobile: content should be full width */
+@media (max-width: 200.98px) {
+  html[dir="rtl"] .content-wrapper,
+  html[dir="rtl"] .main-header,
+  html[dir="rtl"] .main-footer {
+    margin-right: 0 !important;
+  }
+}
+
+
+
+
+/* =========================================
+   Remove / reduce Sidebar shadow (looks like right margin)
+   ========================================= */
+
+/* Sidebar shadow in mobile/offcanvas */
+html[dir="rtl"] .main-sidebar {
+  box-shadow: none !important;     /* remove the big shadow */
+}
+
+/* Sometimes shadow is applied to ::before too */
+html[dir="rtl"] .main-sidebar::before {
+  box-shadow: none !important;
+}
+
+/* =========================================
+   RTL: Move small-box icon to LEFT
+   ========================================= */
+
+html[dir="rtl"] .small-box .icon {
+    right: 20000px !important;
+    float: left;
+    text-align: left;
+    left: 1px !important;   /* مكان الأيقونة من اليسار */
+}
+
+html[dir="rtl"] .small-box .inner {
+    text-align: left;       /* النص يبقى RTL */
+}

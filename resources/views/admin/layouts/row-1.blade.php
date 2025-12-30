@@ -1,4 +1,4 @@
-<section class="content content-wrapper">
+<section class="content ">
 
         <div class="container-fluid">
 

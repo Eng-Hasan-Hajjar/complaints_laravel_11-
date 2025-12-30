@@ -28,6 +28,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('complaints', ComplaintController::class)
         ->parameters(['complaints' => 'complaint']);
 
+
+    // --------------------- إدارة الأقسام (أدمن فقط) ---------------------
+    Route::resource('departments', DepartmentController::class)
+      //  ->except(['show'])
+        ->parameters(['departments' => 'department']);
+
     // إجراءات إضافية على الشكاوى
     Route::post('/complaints/{complaint}/assign', [ComplaintController::class, 'assign'])
         ->name('complaints.assign')
@@ -40,12 +46,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/complaints/{complaint}/comment', [ComplaintController::class, 'comment'])
         ->name('complaints.comment');
 
-    // --------------------- إدارة الأقسام (أدمن فقط) ---------------------
-    Route::middleware('role:admin')->group(function () {
-        Route::resource('departments', DepartmentController::class)
-            ->except(['show'])
-            ->parameters(['departments' => 'department']);
-    });
+
+ 
 
     // --------------------- إدارة الفئات (أدمن فقط) ---------------------
     Route::middleware('role:admin')->group(function () {
