@@ -34,7 +34,19 @@ class ComplaintController extends Controller
         return view('complaints.index', compact('complaints'));
     }
 
-    public function create()
+
+    public function create(Request $request)
+    {
+        $categories = Category::all();
+        $departments = Department::orderBy('name')->get();
+
+        $selectedDepartmentId = $request->get('department_id');
+
+        return view('complaints.create', compact('categories', 'departments', 'selectedDepartmentId'));
+    }
+
+
+    public function create_old()
     {
         $categories = Category::all();
         $departments = Department::all();
@@ -149,4 +161,73 @@ class ComplaintController extends Controller
             ]);
         }
     }
+
+
+    public function edit(Complaint $complaint)
+{
+    $this->authorizeComplaint($complaint);
+
+    $categories = Category::all();
+    $departments = Department::orderBy('name')->get();
+
+    return view('complaints.edit', compact('complaint', 'categories', 'departments'));
+}
+
+public function update(Request $request, Complaint $complaint)
+{
+    $this->authorizeComplaint($complaint);
+
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'category_id' => 'nullable|exists:categories,id',
+        'department_id' => 'required|exists:departments,id',
+        'priority' => 'required|in:low,medium,high,urgent',
+        'attachment.*' => 'nullable|file|mimes:jpg,png,pdf,docx|max:5120',
+    ]);
+
+    // ارفع ملفات جديدة (اختياري: تضيف بدل الملفات القديمة)
+    $attachments = $complaint->attachment ?? [];
+
+    if ($request->hasFile('attachment')) {
+        foreach ($request->file('attachment') as $file) {
+            $path = $file->store('complaints', 'public');
+            $attachments[] = $path;
+        }
+    }
+
+    $complaint->update([
+        'title' => $request->title,
+        'description' => $request->description,
+        'category_id' => $request->category_id,
+        'department_id' => $request->department_id,
+        'priority' => $request->priority,
+        'attachment' => $attachments,
+    ]);
+
+    return redirect()->route('complaints.show', $complaint)->with('success', 'تم تحديث الشكوى بنجاح.');
+}
+
+public function destroy(Complaint $complaint)
+{
+    $this->authorizeComplaint($complaint);
+
+    // حذف المرفقات من التخزين (اختياري لكنه أنظف)
+    if (!empty($complaint->attachment) && is_array($complaint->attachment)) {
+        foreach ($complaint->attachment as $file) {
+            try {
+                Storage::disk('public')->delete($file);
+            } catch (\Throwable $e) {
+                // تجاهل الأخطاء
+            }
+        }
+    }
+
+    $complaint->delete();
+
+    return redirect()->route('complaints.index')->with('success', 'تم حذف الشكوى بنجاح.');
+}
+
+
+
 }   

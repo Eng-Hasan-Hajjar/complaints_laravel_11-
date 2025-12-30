@@ -19,6 +19,25 @@
             </form>
             @endif
         </div>
+
+        <div class="d-flex gap-2">
+            <a href="{{ route('complaints.edit', $complaint) }}" class="btn btn-warning btn-sm">
+                <i class="fas fa-edit"></i> تعديل
+            </a>
+
+            <form action="{{ route('complaints.destroy', $complaint) }}" method="POST"
+                onsubmit="return confirm('هل أنت متأكد من حذف الشكوى؟');">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash"></i> حذف
+                </button>
+            </form>
+        </div>
+
+
+
+
     </div>
     <div class="card-body">
         <div class="row">
@@ -26,17 +45,17 @@
                 <p><strong>الوصف:</strong></p>
                 <p>{{ $complaint->description }}</p>
 
-                @if($complaint->attachment)
-                <p><strong>المرفقات:</strong></p>
-                <div class="row">
-                    @foreach(json_decode($complaint->attachment) as $file)
-                    <div class="col-md-3 mb-2">
-                        <a href="{{ Storage::url($file) }}" target="_blank" class="btn btn-sm btn-outline-primary">
-                            <i class="fas fa-paperclip"></i> ملف
-                        </a>
+                @if(!empty($complaint->attachment) && is_array($complaint->attachment))
+                    <p><strong>المرفقات:</strong></p>
+                    <div class="row">
+                        @foreach($complaint->attachment as $file)
+                            <div class="col-md-3 mb-2">
+                                <a href="{{ Storage::url($file) }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-paperclip"></i> ملف
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
-                    @endforeach
-                </div>
                 @endif
             </div>
             <div class="col-md-4">

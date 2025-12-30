@@ -16,6 +16,9 @@
         <select name="department_id" class="form-select @error('department_id') is-invalid @enderror" required>
             <option value="">اختر القسم</option>
             @foreach($departments as $dept)
+        
+
+
             <option value="{{ $dept->id }}" {{ old('department_id') == $dept->id ? 'selected' : '' }}>{{ $dept->name }}</option>
             @endforeach
         </select>

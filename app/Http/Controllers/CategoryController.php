@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Department;
+use App\Models\Complaint;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,6 +15,18 @@ class CategoryController extends Controller
         return view('admin.categories.index', compact('categories'));
     }
 
+    
+public function show(Category $category)
+{
+    $category->load('department');
+
+    $complaints = Complaint::with(['user', 'department', 'assignedUser'])
+        ->where('category_id', $category->id)
+        ->latest()
+        ->paginate(15);
+
+    return view('admin.categories.show', compact('category', 'complaints'));
+}
     public function create()
     {
         $departments = Department::all();

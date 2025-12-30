@@ -50,11 +50,9 @@ Route::middleware(['auth'])->group(function () {
  
 
     // --------------------- إدارة الفئات (أدمن فقط) ---------------------
-    Route::middleware('role:admin')->group(function () {
-        Route::resource('categories', CategoryController::class)
-            ->except(['show'])
+     Route::resource('categories', CategoryController::class)
+          
             ->parameters(['categories' => 'category']);
-    });
 
 
 

@@ -1,44 +1,30 @@
 @extends('admin.layouts.app')
 
-@section('title', 'عرض القسم')
+@section('title', 'عرض الفئة')
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>القسم: {{ $department->name }}</h2>
+    <h2>الفئة: {{ $category->name }}</h2>
     <div class="d-flex gap-2">
-        <a href="{{ route('departments.edit', $department) }}" class="btn btn-warning">
+        <a href="{{ route('categories.edit', $category) }}" class="btn btn-warning">
             <i class="fas fa-edit"></i> تعديل
         </a>
-        <a href="{{ route('departments.index') }}" class="btn btn-secondary">
-            رجوع
-        </a>
+        <a href="{{ route('categories.index') }}" class="btn btn-secondary">رجوع</a>
     </div>
 </div>
-
-@if(session('success'))
-<div class="alert alert-success">{{ session('success') }}</div>
-@endif
 
 <div class="row">
     <div class="col-lg-4 mb-3">
         <div class="card">
             <div class="card-header">
-                <h5 class="mb-0">معلومات القسم</h5>
+                <h5 class="mb-0">معلومات الفئة</h5>
             </div>
             <div class="card-body">
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        <strong>اسم القسم:</strong> {{ $department->name }}
-                    </li>
-                    <li class="list-group-item">
-                        <strong>مدير القسم:</strong> {{ $department->manager?->name ?? 'غير محدد' }}
-                    </li>
-                    <li class="list-group-item">
-                        <strong>عدد الشكاوى:</strong> {{ $complaints->total() }}
-                    </li>
-                    <li class="list-group-item">
-                        <strong>تاريخ الإنشاء:</strong> {{ $department->created_at?->format('d/m/Y') }}
-                    </li>
+                    <li class="list-group-item"><strong>اسم الفئة:</strong> {{ $category->name }}</li>
+                    <li class="list-group-item"><strong>القسم:</strong> {{ $category->department?->name ?? '-' }}</li>
+                    <li class="list-group-item"><strong>عدد الشكاوى:</strong> {{ $complaints->total() }}</li>
+                    <li class="list-group-item"><strong>تاريخ الإنشاء:</strong> {{ $category->created_at?->format('d/m/Y') }}</li>
                 </ul>
             </div>
         </div>
@@ -47,10 +33,9 @@
     <div class="col-lg-8 mb-3">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">شكاوى هذا القسم</h5>
-                <a href="{{ route('complaints.create', ['department_id' => $department->id]) }}" class="btn btn-sm btn-primary">
-
-                <a href="{{ route('complaints.create') }}" class="btn btn-sm btn-primary">
+                <h5 class="mb-0">شكاوى هذه الفئة</h5>
+                <a href="{{ route('complaints.create', ['category_id' => $category->id, 'department_id' => $category->department_id]) }}"
+                   class="btn btn-sm btn-primary">
                     <i class="fas fa-plus"></i> شكوى جديدة
                 </a>
             </div>
@@ -98,7 +83,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="7" class="text-center text-muted">لا توجد شكاوى ضمن هذا القسم</td>
+                                <td colspan="7" class="text-center text-muted">لا توجد شكاوى ضمن هذه الفئة</td>
                             </tr>
                             @endforelse
                         </tbody>

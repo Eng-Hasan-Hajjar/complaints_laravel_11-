@@ -33,7 +33,7 @@
                             <a href="{{ route('complaints.show', $complaint) }}">
                                 {{ Str::limit($complaint->title, 40) }}
                             </a>
-                        </td|
+                        </td>
                         <td>{{ $complaint->department->name }}</td>
                         <td>
                             <span class="badge bg-{{ $complaint->status == 'pending' ? 'warning' : ($complaint->status == 'resolved' ? 'success' : 'info') }}">
@@ -46,11 +46,27 @@
                             </span>
                         </td>
                         <td>{{ $complaint->created_at->format('d/m/Y') }}</td>
-                        <td>
+
+                        
+                        <td class="d-flex gap-1">
                             <a href="{{ route('complaints.show', $complaint) }}" class="btn btn-sm btn-info">
                                 <i class="fas fa-eye"></i>
                             </a>
+
+                            <a href="{{ route('complaints.edit', $complaint) }}" class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i>
+                            </a>
+
+                            <form action="{{ route('complaints.destroy', $complaint) }}" method="POST"
+                                onsubmit="return confirm('هل أنت متأكد من حذف هذه الشكوى؟');">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
+
                     </tr>
                     @endforeach
                 </tbody>
