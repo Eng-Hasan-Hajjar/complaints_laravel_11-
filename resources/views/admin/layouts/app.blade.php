@@ -24,7 +24,15 @@
   @include('admin.layouts.side-nav')
 
   <div class="content-wrapper">
-    @yield('content')
+   @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('employee'))
+
+          @yield('content')
+    @endif
+    @if(auth()->user()->hasRole('student') || auth()->user()->hasRole('doctor'))
+
+
+      @endif
+
   </div>
 
   <aside class="control-sidebar control-sidebar-light"></aside>

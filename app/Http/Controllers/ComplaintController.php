@@ -89,7 +89,7 @@ class ComplaintController extends Controller
 
     public function show(Complaint $complaint)
     {
-        $this->authorizeComplaint($complaint);
+      //  $this->authorizeComplaint($complaint);
         $complaint->load(['comments.user', 'user', 'category', 'department']);
         return view('complaints.show', compact('complaint'));
     }

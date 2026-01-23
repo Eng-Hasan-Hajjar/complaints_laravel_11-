@@ -29,6 +29,9 @@
                 </a>
 
                 <ul class="nav nav-treeview">
+
+                @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('employee'))
+
                     <li class="nav-item">
                         <a href="{{ route('dashboard') }}" class="nav-link">
                             <i class="nav-icon fas fa-home"></i>
@@ -36,7 +39,6 @@
                         </a>
                     </li>
 
-                    @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('employee'))
                         <li class="nav-item">
                             <a href="{{ route('complaints.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
