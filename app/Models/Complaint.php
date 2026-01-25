@@ -56,4 +56,63 @@ class Complaint extends Model
     {
         return $this->hasMany(ComplaintNotification::class);
     }
+
+    // في Model Complaint
+public function getStatusColorAttribute()
+{
+    return match($this->status){
+        'pending'   => 'bg-warning bg-opacity-25',
+        'in_review' => 'bg-info bg-opacity-25',
+        'resolved'  => 'bg-success bg-opacity-25',
+        'closed'    => 'bg-secondary bg-opacity-25',
+        default     => 'bg-light',
+    };
+}
+
+ // ====== STATUS ======
+    public function getStatusTextAttribute()
+    {
+        return match ($this->status) {
+            'pending'   => 'قيد الانتظار',
+            'in_review' => 'قيد المراجعة',
+            'resolved'  => 'تم الحل',
+            'closed'    => 'مغلقة',
+            default     => 'غير معروف',
+        };
+    }
+
+    public function getStatusBadgeAttribute()
+    {
+        return match ($this->status) {
+            'pending'   => 'warning',
+            'in_review' => 'info',
+            'resolved'  => 'success',
+            'closed'    => 'secondary',
+            default     => 'dark',
+        };
+    }
+
+    // ====== PRIORITY ======
+    public function getPriorityTextAttribute()
+    {
+        return match ($this->priority) {
+            'low'    => 'منخفضة',
+            'medium' => 'متوسطة',
+            'high'   => 'مرتفعة',
+            'urgent' => 'عاجلة',
+            default  => 'غير محددة',
+        };
+    }
+
+    public function getPriorityBadgeAttribute()
+    {
+        return match ($this->priority) {
+            'low'    => 'secondary',
+            'medium' => 'primary',
+            'high'   => 'warning',
+            'urgent' => 'danger',
+            default  => 'dark',
+        };
+    }
+
 }
