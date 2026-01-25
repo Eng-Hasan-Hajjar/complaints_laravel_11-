@@ -1,8 +1,4 @@
-@extends('layouts.guest')
-
-@section('title', 'نتيجة تتبع الشكوى #' . $complaint->id)
-
-@section('content')
+<x-guest-layout>
 <section class="py-5" dir="rtl">
     <div class="container">
         <div class="row justify-content-center">
@@ -90,7 +86,7 @@
         </div>
     </div>
 </section>
-@endsection
+</x-guest-layout>
 
 @push('styles')
 <style>

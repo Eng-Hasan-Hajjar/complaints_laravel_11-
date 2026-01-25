@@ -21,6 +21,8 @@
         </div>
 
         <div class="d-flex gap-2">
+            @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('employee'))
+
             <a href="{{ route('complaints.edit', $complaint) }}" class="btn btn-warning btn-sm">
                 <i class="fas fa-edit"></i> تعديل
             </a>
@@ -33,6 +35,7 @@
                     <i class="fas fa-trash"></i> حذف
                 </button>
             </form>
+                 @endif
         </div>
 
 

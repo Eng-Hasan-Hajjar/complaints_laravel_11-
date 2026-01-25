@@ -1,3 +1,6 @@
+@php use Illuminate\Support\Facades\Storage; @endphp
+
+
 @extends('admin.layouts.app')
 
 @section('content')
@@ -38,11 +41,16 @@
 
                     <!-- Profile Picture Preview -->
                     <div class="text-center mb-4">
-                        @if(auth()->user()->profile_image)
-                            <img src="{{ asset(auth()->user()->profile_image) }}" class="img-circle elevation-2" width="80" height="80" alt="صورة الملف الشخصي">
-                        @else
-                            <span class="text-muted">لم يتم تحميل صورة الملف الشخصي.</span>
-                        @endif
+                    @if(auth()->user()->profile_image)
+    <img
+        src="{{ Storage::disk('public')->url(auth()->user()->profile_image) }}"
+        class="img-circle elevation-2"
+        width="80" height="80"
+        style="object-fit:cover"
+        alt="صورة الملف الشخصي">
+@else
+    <span class="text-muted">لم يتم تحميل صورة الملف الشخصي.</span>
+@endif
                     </div>
 
                     <!-- Verification Email Form -->
@@ -94,9 +102,14 @@
                             @error('profile_image')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            @if(auth()->user()->profile_image)
-                                <img src="{{ asset(auth()->user()->profile_image) }}" class="mt-2 img-circle elevation-1" width="60" alt="صورة الملف الشخصي الحالية">
-                            @endif
+                        @if(auth()->user()->profile_image)
+    <img
+        src="{{ Storage::disk('public')->url(auth()->user()->profile_image) }}"
+        class="mt-2 img-circle elevation-1"
+        width="60" height="60"
+        style="object-fit:cover"
+        alt="صورة الملف الشخصي الحالية">
+@endif
                         </div>
 
                         <!-- Payment Receipt Upload -->

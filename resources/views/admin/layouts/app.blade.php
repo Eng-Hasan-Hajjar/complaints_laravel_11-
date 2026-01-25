@@ -30,7 +30,7 @@
     @endif
     @if(auth()->user()->hasRole('student') || auth()->user()->hasRole('doctor'))
 
-
+   @yield('content')
       @endif
 
   </div>

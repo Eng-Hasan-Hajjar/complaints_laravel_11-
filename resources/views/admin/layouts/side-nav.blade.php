@@ -19,6 +19,9 @@
 
     <nav class="mt-2" style="padding-right: -20px; margin-right:-30px ">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+           
+           
+            {{-- ✅ روابط مشتركة للجميع --}}
             <li class="nav-item menu-open">
                 <a href="#" class="nav-link active">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -29,7 +32,41 @@
                 </a>
 
                 <ul class="nav nav-treeview">
+  {{-- ✅ روابط الطالب فقط --}}
+    @if(auth()->user()->hasRole('student'))
+        <li class="nav-item">
+            <a href="{{ route('complaints.create') }}" class="nav-link">
+                <i class="nav-icon fas fa-plus-circle"></i>
+                <p>إنشاء شكوى</p>
+            </a>
+        </li>
 
+        <li class="nav-item">
+            <a href="{{ route('complaints.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-list"></i>
+                <p>شكاواي</p>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ route('notifications.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-bell"></i>
+                <p>الإشعارات</p>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ route('complaints.track.form') }}" class="nav-link">
+                <i class="nav-icon fas fa-search"></i>
+                <p>تتبع شكوى (عام)</p>
+            </a>
+        </li>
+    @endif
+
+
+
+
+     {{-- ✅ روابط الأدمن/الموظف فقط --}}
                 @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('employee'))
 
                     <li class="nav-item">
@@ -59,6 +96,18 @@
                         </li>
                     @endif
 
+                    @if(auth()->user()->hasRole('doctor'))
+                        <li class="nav-item">
+                            <a href="{{ route('complaints.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-list"></i>
+                                <p>شكاوى قسمي</p>
+                            </a>
+                        </li>
+                    @endif
+
+
+
+  {{-- ✅ المستخدمين للأدمن فقط --}}
                     @if(auth()->user()->hasRole('admin'))
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}" class="nav-link">
@@ -68,13 +117,14 @@
                         </li>
                     @endif
 
+    {{-- ✅ رابط الموقع للجميع --}}
                     <li class="nav-item">
                         <a href="{{ route('main_home') }}" class="nav-link">
                             <i class="nav-icon fas fa-globe"></i>
                             <p>الموقع</p>
                         </a>
                     </li>
-
+  {{-- ✅ تسجيل خروج للجميع --}}
                     <li class="nav-item" style="margin-bottom: 10px">
                         <a class="nav-link" style="margin-bottom: 10px" href="{{ route('logout') }}"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

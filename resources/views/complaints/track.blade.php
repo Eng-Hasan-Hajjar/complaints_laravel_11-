@@ -1,8 +1,8 @@
-@extends('layouts.guest')
+<x-guest-layout>
 
-@section('title', 'تتبع الشكوى - جامعة الشهباء')
 
-@section('content')
+
+
 <section class="py-5 bg-light" dir="rtl">
     <div class="container">
         <div class="row justify-content-center">
@@ -47,4 +47,7 @@
         </div>
     </div>
 </section>
-@endsection
+
+
+
+</x-guest-layout>

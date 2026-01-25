@@ -105,10 +105,26 @@ class ComplaintController extends Controller
     public function updateStatus(Request $request, Complaint $complaint)
     {
         $request->validate(['status' => 'required|in:pending,in_review,resolved,closed']);
+
         $complaint->update(['status' => $request->status]);
-        $this->notifyUser($complaint->user_id, "تم تحديث حالة شكواك: {$complaint->status}", $complaint);
+
+        $statusText = match ($complaint->status) {
+            'pending'   => 'قيد الانتظار',
+            'in_review' => 'قيد المراجعة',
+            'resolved'  => 'تم الحل (مقبولة/تمت المعالجة)',
+            'closed'    => 'مغلقة (مرفوضة أو أغلقت)',
+            default     => $complaint->status,
+        };
+
+        $this->notifyUser(
+            $complaint->user_id,
+            "تم تحديث حالة شكواك رقم #{$complaint->id} إلى: {$statusText}",
+            $complaint
+        );
+
         return back()->with('success', 'تم تحديث الحالة.');
     }
+
 
     public function comment(Request $request, Complaint $complaint)
     {
@@ -120,24 +136,37 @@ class ComplaintController extends Controller
             'is_admin' => !Auth::user()->hasRole('student'),
         ]);
 
-        $this->notifyUser(
-            $complaint->user_id == Auth::id() ? $complaint->assigned_to : $complaint->user_id,
-            "تعليق جديد على شكواك",
-            $complaint
-        );
+        $targetUserId = ($complaint->user_id == Auth::id())
+            ? ($complaint->assigned_to ?? null)
+            : $complaint->user_id;
+
+        if ($targetUserId) {
+            $this->notifyUser($targetUserId, "تعليق جديد على الشكوى رقم #{$complaint->id}", $complaint);
+        }
+
 
         return back();
     }
 
     protected function authorizeComplaint($complaint)
     {
-        if (Auth::user()->hasRole('student') && $complaint->user_id != Auth::id()) {
-            abort(403);
+        // الطالب فقط يرى شكاواه
+        if (Auth::user()->hasRole('student')) {
+            abort_if($complaint->user_id !== Auth::id(), 403);
+            return;
         }
-        if (!Auth::user()->hasRole('admin') && !in_array(Auth::id(), [$complaint->user_id, $complaint->assigned_to])) {
-            abort(403);
-        }
+
+        // الأدمن يرى كل شيء
+        if (Auth::user()->hasRole('admin')) return;
+
+        // الدكتور (مدير قسم) أو المكلّف أو صاحب الشكوى
+        $isDepartmentManager = $complaint->department?->manager_id === Auth::id();
+        $isAssigned = $complaint->assigned_to === Auth::id();
+        $isOwner = $complaint->user_id === Auth::id();
+
+        abort_if(!($isDepartmentManager || $isAssigned || $isOwner), 403);
     }
+
 
     protected function notifyAdmins($message, $complaint)
     {

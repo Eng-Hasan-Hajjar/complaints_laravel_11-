@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\VolunteerController;
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -15,6 +15,8 @@ use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NotificationController;
+
 require __DIR__.'/auth.php';
 
 // ==================== الروتات المحمية (يتطلب تسجيل الدخول) ====================
@@ -23,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
     // --------------------- لوحة التحكم ---------------------
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
+
 
     // --------------------- الشكاوى (متاحة للجميع) ---------------------
     Route::resource('complaints', ComplaintController::class)
@@ -37,11 +40,11 @@ Route::middleware(['auth'])->group(function () {
     // إجراءات إضافية على الشكاوى
     Route::post('/complaints/{complaint}/assign', [ComplaintController::class, 'assign'])
         ->name('complaints.assign')
-        ->middleware('role:admin|employee');
+       ;
 
     Route::post('/complaints/{complaint}/status', [ComplaintController::class, 'updateStatus'])
         ->name('complaints.status')
-        ->middleware('role:admin|employee|doctor');
+        ;
 
     Route::post('/complaints/{complaint}/comment', [ComplaintController::class, 'comment'])
         ->name('complaints.comment');
@@ -55,14 +58,18 @@ Route::middleware(['auth'])->group(function () {
             ->parameters(['categories' => 'category']);
 
 
+    // Notifications
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('/notifications/{notification}/read', [NotificationController::class, 'markRead'])->name('notifications.read');
+    Route::post('/notifications/read-all', [NotificationController::class, 'markAllRead'])->name('notifications.readAll');
 
-    // --------------------- الإشعارات (اختياري) ---------------------
+    /* --------------------- الإشعارات (اختياري) ---------------------
     Route::get('/notifications', function () {
         $notifications = auth()->user()->notifications()->latest()->paginate(20);
         auth()->user()->notifications()->update(['read_at' => now()]);
         return view('notifications.index', compact('notifications'));
     })->name('notifications.index');
-
+*/
 });
 
 
@@ -96,9 +103,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('roles', RoleController::class);
     
 });
+/*
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
-});
+});*/
 Route::get('admin-page',function(){
     return view('admin.index');
 });
